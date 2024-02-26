@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int _health = 2;
+    [SerializeField] private float _speed;
 
-    private void OnTriggerEnter(Collider other)
+    private Vector3 _direction;
+
+    private void Update()
     {
-        if (other.CompareTag("Bullet"))
-        {
-            _health--;
+        transform.Translate(_direction * _speed * Time.deltaTime);
+    }
 
-            if ( _health <= 0)
-                Destroy(gameObject);
-
-            Destroy(other);
-        }
+    public void SetDirection(Vector3 direction)
+    {
+        _direction = direction;
     }
 }
