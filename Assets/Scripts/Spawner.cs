@@ -3,34 +3,34 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _target;
+    [SerializeField] private Transform _target;
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private int _maxEnemies;
-    [SerializeField] private int _timeSpawn;
+    //[SerializeField] private int _maxEnemies;
+    //[SerializeField] private float _timeSpawn;
 
-    private int _spawnCount = 0;
-    //private int _minValue = -15;
-    //private int _maxValue = 15;
+   // private int _spawnCount = 0;
+   // private float _timer;
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemys());
+        SpawnEnemy();
     }
 
-    private IEnumerator SpawnEnemys()
+    private void SpawnEnemy()
     {
-        if (_spawnCount < _maxEnemies)
-        {
-            Enemy newEnemy = Instantiate(_enemy, transform);
-            //_direction = new Vector3(Random.Range(_minValue, _maxValue), 0f, Random.Range(_minValue, _maxValue)).normalized;
-            newEnemy.SetDirection(_target.transform.position.normalized);
-            _spawnCount++;
-            yield return new WaitForSeconds(_timeSpawn);
-            StartCoroutine(SpawnEnemys());
-        }
-        else
-        {
-            yield return null;
-        }
+        Enemy newEnemy = Instantiate(_enemy, transform);
+        newEnemy.SetTarget(_target);
+        //if (_spawnCount < _maxEnemies)
+        //{
+        //    Enemy newEnemy = Instantiate(_enemy, transform);
+        //    newEnemy.SetTarget(_target);
+        //    _spawnCount++;
+        //    yield return new WaitForSeconds(_timeSpawn);
+        //    StartCoroutine(SpawnEnemys());
+        //}
+        //else
+        //{
+        //    yield return null;
+        //}
     }
 }
