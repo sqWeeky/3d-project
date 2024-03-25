@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float _shotTime;
     [SerializeField] private Transform _target;
 
-    private bool isWork;
+    private bool _isWork;
     private Rigidbody _rigidbodyBullet;
 
     private void Start()
@@ -19,10 +19,10 @@ public class Shooting : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        isWork = true;
+        _isWork = true;
         var waitForSeconds = new WaitForSeconds(_shotTime);
 
-        while (isWork)
+        while (_isWork)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
             Transform newBullet = Instantiate(_bullet, transform.position + direction, Quaternion.identity);
