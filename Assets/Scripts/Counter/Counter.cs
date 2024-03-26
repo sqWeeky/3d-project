@@ -8,34 +8,36 @@ public class Counter : MonoBehaviour
 
     private float _period = 0.5f;
     private float _counter = 0;
-    private float _currentTime = 0;
     private bool _isActive = false;
+    private Coroutine _coroutine;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _isActive = !_isActive;
-            StartCoroutine(Count());
+
+            if (_isActive)            
+                _coroutine = StartCoroutine(Count());            
+            else            
+                StopCounter();            
         }
+    }
+
+    private void StopCounter()
+    {
+        StopCoroutine(_coroutine);
     }
 
     private IEnumerator Count()
     {
-        while (_isActive == true)
-        {
-            if (_currentTime > _period)
-            {
-                _currentTime = 0;
-                _counter++;
-                _text.text = _counter.ToString();
-            }
-            else
-            {
-                _currentTime += Time.deltaTime;
-            }
+        var waitForSeconds = new WaitForSeconds(_period);
 
-            yield return null;
+        while (true)
+        {
+            _counter++;
+            _text.text = _counter.ToString();
+            yield return waitForSeconds;
         }
     }
 }
