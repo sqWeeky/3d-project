@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Cube : MonoBehaviour
@@ -10,6 +11,8 @@ public class Cube : MonoBehaviour
     private Click _click;
     private Divider _divider;
     private Explosion _explosion;
+
+    public event Action ExplosionActivated;
 
     private void Awake()
     {
@@ -34,13 +37,12 @@ public class Cube : MonoBehaviour
 
     private void IsSuccess()
     {
-        _value = Random.Range(_minValue, _maxValue);
-
-        Debug.Log(_chanceDivider);
+        _value = UnityEngine.Random.Range(_minValue, _maxValue);
 
         if (_value <= _chanceDivider)
         {
             _divider.ActivateDivision();
+            ExplosionActivated?.Invoke();
         }
         else
         {

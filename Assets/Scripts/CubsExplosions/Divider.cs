@@ -45,7 +45,6 @@ public class Divider : MonoBehaviour
     private void CountCubes()
     {
         _valueCubes = Random.Range(_minValueCubes, _maxValueCubes + 1);
-        Debug.LogError(_valueCubes);
     }
 
     private Color CreateColor()
