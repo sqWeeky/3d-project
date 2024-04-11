@@ -12,14 +12,13 @@ public class Cube : MonoBehaviour
     private Divider _divider;
     private Explosion _explosion;
 
-    public event Action ExplosionActivated;
-
     private void Awake()
     {
         _click = GetComponent<Click>();
         _divider = GetComponent<Divider>();
         _explosion = GetComponent<Explosion>();
     }
+
     private void Start()
     {
         _chanceDivider = _divider.CurrentChance;
@@ -42,7 +41,6 @@ public class Cube : MonoBehaviour
         if (_value <= _chanceDivider)
         {
             _divider.ActivateDivision();
-            ExplosionActivated?.Invoke();
         }
         else
         {
