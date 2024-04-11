@@ -11,29 +11,17 @@ public class Divider : MonoBehaviour
     private float _currentChance = 100;
 
     private MeshRenderer _renderer;
-    private Click _click;
 
     public float CurrentChance => _currentChance;
 
     private void Awake()
     {
-        _click = GetComponent<Click>();
         _renderer = GetComponent<MeshRenderer>();
     }
 
     private void Start()
     {
         _renderer.material.color = CreateColor();
-    }
-
-    private void OnEnable()
-    {
-        _click.ClickCompleted += ActivateDivision;
-    }
-
-    private void OnDisable()
-    {
-        _click.ClickCompleted -= ActivateDivision;
     }
 
     public void ActivateDivision()
@@ -57,6 +45,7 @@ public class Divider : MonoBehaviour
     private void CountCubes()
     {
         _valueCubes = Random.Range(_minValueCubes, _maxValueCubes + 1);
+        Debug.LogError(_valueCubes);
     }
 
     private Color CreateColor()

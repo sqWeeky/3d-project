@@ -35,7 +35,7 @@ public class Cube : MonoBehaviour
     private void IsSuccess()
     {
         _value = Random.Range(_minValue, _maxValue);
-        Debug.Log(_value);
+
         Debug.Log(_chanceDivider);
 
         if (_value <= _chanceDivider)
