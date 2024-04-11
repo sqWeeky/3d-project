@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Cube : MonoBehaviour
@@ -36,7 +35,7 @@ public class Cube : MonoBehaviour
 
     private void IsSuccess()
     {
-        _value = UnityEngine.Random.Range(_minValue, _maxValue);
+        _value = Random.Range(_minValue, _maxValue);
 
         if (_value <= _chanceDivider)
         {
