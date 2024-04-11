@@ -6,30 +6,10 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private float _radius;
     [SerializeField] private float _force;
-    [SerializeField] private AudioSource _clip;
 
-    private Click _click;
-
-    private void Awake()
-    {
-        _click = GetComponent<Click>();
-    }
-
-    private void OnEnable()
-    {
-        _click.BangCompleted += Activate;
-    }
-
-    private void OnDisable()
-    {
-        _click.BangCompleted -= Activate;
-    }
-
-    private void Activate()
+    public void Activate()
     {
         Explode();
-        Debug.Log(_clip.clip);
-        _clip.Play();
         Destroy(gameObject);
     }
 

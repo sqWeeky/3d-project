@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Divider : MonoBehaviour
@@ -8,15 +6,21 @@ public class Divider : MonoBehaviour
     private int _maxValueCubes = 4;
     private int _valueCubes;
     private int _counter;
-    private int _divider = 2;
+    private float _delta = 2f;
+    private float _alpha = 1f;
 
+    private MeshRenderer _renderer;
     private Click _click;
-    private Transform _transform;
 
     private void Awake()
     {
         _click = GetComponent<Click>();
-        _transform = GetComponent<Transform>();
+        _renderer = GetComponent<MeshRenderer>();
+    }
+
+    private void Start()
+    {
+        _renderer.material.color = CreateColor();
     }
 
     private void OnEnable()
@@ -29,7 +33,7 @@ public class Divider : MonoBehaviour
         _click.ClickCompleted -= ActivateDivision;
     }
 
-    private void ActivateDivision()
+    public void ActivateDivision()
     {
         CountCubes();
 
@@ -37,8 +41,9 @@ public class Divider : MonoBehaviour
 
         while (_counter != _valueCubes)
         {
-            var cube = Instantiate(_transform);
-            cube.localScale = transform.localScale / _divider;
+            Divider cube = Instantiate(this);
+            cube.transform.localScale = transform.localScale / _delta;
+            cube._renderer.material.color = CreateColor();
             _counter++;
         }
 
@@ -48,5 +53,14 @@ public class Divider : MonoBehaviour
     private void CountCubes()
     {
         _valueCubes = Random.Range(_minValueCubes, _maxValueCubes + 1);
+    }
+
+    private Color CreateColor()
+    {
+        float r = UnityEngine.Random.Range(0, 1f);
+        float g = UnityEngine.Random.Range(0, 1f);
+        float b = UnityEngine.Random.Range(0, 1f);
+
+        return new Color(r, g, b, _alpha);
     }
 }
