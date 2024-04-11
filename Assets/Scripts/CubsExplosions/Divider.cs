@@ -8,9 +8,12 @@ public class Divider : MonoBehaviour
     private int _counter;
     private float _delta = 2f;
     private float _alpha = 1f;
+    private float _currentChance = 100;
 
     private MeshRenderer _renderer;
     private Click _click;
+
+    public float CurrentChance => _currentChance;
 
     private void Awake()
     {
@@ -43,6 +46,7 @@ public class Divider : MonoBehaviour
         {
             Divider cube = Instantiate(this);
             cube.transform.localScale = transform.localScale / _delta;
+            cube._currentChance /= _delta;
             cube._renderer.material.color = CreateColor();
             _counter++;
         }
