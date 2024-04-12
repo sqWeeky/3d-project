@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(Divider), typeof(Explosion), typeof(Click))]
@@ -14,14 +13,12 @@ public class Cube : MonoBehaviour
     private MeshRenderer _renderer;
     private Click _click;
     private Divider _divider;
-    private Explosion _explosion;
 
     private void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
         _click = GetComponent<Click>();
         _divider = GetComponent<Divider>();
-        _explosion = GetComponent<Explosion>();
     }
 
     private void Start()
@@ -31,24 +28,24 @@ public class Cube : MonoBehaviour
 
     private void OnEnable()
     {
-        _click.ClickCompleted += DefineAction;
+        _click.ActionCompleted += DefineAction;
     }
 
     private void OnDisable()
     {
-        _click.ClickCompleted -= DefineAction;
+        _click.ActionCompleted -= DefineAction;
     }
 
     public void ChangeCharacteristics()
     {
         ChangeScale();
-        _chanceDivider = ChangeChanceDivider();
+        ChangeChanceDivider();
         ChangeColor();
     }
 
     private void ChangeScale() => transform.localScale = transform.localScale / _delta;
 
-    private float ChangeChanceDivider() => _chanceDivider /= _delta;
+    private void ChangeChanceDivider() => _chanceDivider = _chanceDivider /= _delta;
 
     private void ChangeColor() => _renderer.material.color = CreateColor();
 
@@ -62,7 +59,7 @@ public class Cube : MonoBehaviour
         }
         else
         {
-            _explosion.Activate();
+            Destroy(gameObject);
         }
     }
 

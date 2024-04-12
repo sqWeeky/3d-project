@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Cube))]
+[RequireComponent(typeof(Cube), typeof(Explosion))]
 public class Divider : MonoBehaviour
 {
     [SerializeField] private Spawner _spawner;
@@ -11,25 +12,31 @@ public class Divider : MonoBehaviour
     private int _counter;
 
     private Cube _cube;
+    private Explosion _explosion;
 
     private void Awake()
     {
         _cube = GetComponent<Cube>();
+        _explosion = GetComponent<Explosion>();
     }
 
     public void ActivateDivision()
     {
-        _valueCubes = CreatRandomValue();
+        _valueCubes = CreatValue();
+        List<Rigidbody> cubes = new();
 
         for (_counter = 0; _counter < _valueCubes; _counter++)
         {
             Cube cube = _spawner.Activate(_cube);
             cube.ChangeCharacteristics();
+
+           if(cube.TryGetComponent(out Rigidbody component))
+                cubes.Add(component);
         }
 
-        Destroy(gameObject);
+        _explosion.Activate(cubes);
     }
 
-    private int CreatRandomValue()
+    private int CreatValue()
          => Random.Range(_minValueCubes, _maxValueCubes + 1);   
 }

@@ -6,13 +6,13 @@ public class Click : MonoBehaviour, IPointerClickHandler
 {
     private int _pointerId = -1;
 
-    public event Action ClickCompleted;
+    public event Action ActionCompleted;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.pointerId == _pointerId)
         {
-            ClickCompleted?.Invoke();
+            ActionCompleted?.Invoke();
         }
     }
 }

@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5171622389340928620, guid: b413e632ed7288b4f916ef4cb3e9d3ba, type: 3}
+      propertyPath: _radius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5598880980892935491, guid: b413e632ed7288b4f916ef4cb3e9d3ba, type: 3}
       propertyPath: m_Name
       value: Cube
@@ -365,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 395704001}
   serializedVersion: 2
   m_LocalRotation: {x: 0.37032443, y: -0, z: -0, w: 0.92890245}
-  m_LocalPosition: {x: 0, y: 35.55, z: -35.72}
+  m_LocalPosition: {x: 0, y: 25.18, z: -32.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,6 +391,59 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!1 &410939052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410939053}
+  - component: {fileID: 410939054}
+  m_Layer: 0
+  m_Name: Roof
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410939053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410939052}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.38, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 781836785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &410939054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410939052}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &781836781
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +549,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1130188727}
+  - {fileID: 410939053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980394685
@@ -545,8 +603,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0, z: 50}
-  m_Center: {x: 4.806428, y: 0, z: 0}
+  m_Size: {x: 42.09454, y: 0, z: 50}
+  m_Center: {x: 20.8537, y: 0, z: 0}
 --- !u!1 &1076697954
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,8 +656,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0, z: 50}
-  m_Center: {x: 4.806428, y: 0, z: 0}
+  m_Size: {x: 32.69439, y: 0, z: 50}
+  m_Center: {x: 16.153625, y: 2.1832037e-15, z: 0}
 --- !u!1001 &1114579130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,8 +995,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0, z: 50}
-  m_Center: {x: 4.806428, y: 0, z: 0}
+  m_Size: {x: 38.08331, y: 0, z: 50}
+  m_Center: {x: 18.848085, y: 4.0473782e-14, z: 0}
 --- !u!1 &1821266381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,8 +1092,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0, z: 50}
-  m_Center: {x: 4.806428, y: 0, z: 0}
+  m_Size: {x: 2.1970482, y: 0, z: 50}
+  m_Center: {x: 0.90495133, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
