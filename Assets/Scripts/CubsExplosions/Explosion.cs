@@ -3,18 +3,15 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private float _radius;
-    [SerializeField] private float _force;
-
-    public void Activate(List<Rigidbody> list)
+    public void Activate(List<Rigidbody> list, float radius, float force)
     {
-        Explode(list);
+        Explode(list, radius, force);
         Destroy(gameObject);
     }
 
-    private void Explode(List<Rigidbody> list)
+    private void Explode(List<Rigidbody> list, float radius, float force)
     {
         foreach (Rigidbody explodableObject in list)
-            explodableObject.AddExplosionForce(_force, transform.position, _radius);
+            explodableObject.AddExplosionForce(force, transform.position, radius);
     }
 }

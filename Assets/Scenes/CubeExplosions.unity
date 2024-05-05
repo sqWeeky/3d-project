@@ -175,10 +175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5171622389340928620, guid: b413e632ed7288b4f916ef4cb3e9d3ba, type: 3}
-      propertyPath: _radius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5598880980892935491, guid: b413e632ed7288b4f916ef4cb3e9d3ba, type: 3}
       propertyPath: m_Name
       value: Cube

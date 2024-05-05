@@ -20,7 +20,7 @@ public class Divider : MonoBehaviour
         _explosion = GetComponent<Explosion>();
     }
 
-    public void ActivateDivision()
+    public void ActivateDivision(float defaultRadius, float defaultForce)
     {
         _valueCubes = CreatValue();
         List<Rigidbody> cubes = new();
@@ -28,15 +28,15 @@ public class Divider : MonoBehaviour
         for (_counter = 0; _counter < _valueCubes; _counter++)
         {
             Cube cube = _spawner.Activate(_cube);
-            cube.ChangeCharacteristics();
+            cube.ChangeCharacteristics(_cube.ChanceDivider, _cube.Radius, _cube.Force);
 
-           if(cube.TryGetComponent(out Rigidbody component))
+            if (cube.TryGetComponent(out Rigidbody component))
                 cubes.Add(component);
         }
 
-        _explosion.Activate(cubes);
+        _explosion.Activate(cubes, defaultRadius, defaultForce);
     }
 
     private int CreatValue()
-         => Random.Range(_minValueCubes, _maxValueCubes + 1);   
+         => Random.Range(_minValueCubes, _maxValueCubes + 1);
 }
