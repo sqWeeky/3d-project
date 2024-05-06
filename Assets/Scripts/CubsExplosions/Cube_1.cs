@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(Divider), typeof(Explosion), typeof(Click))]
-public class Cube : MonoBehaviour
+public class Cube_1 : MonoBehaviour
 {
     private float _chanceDivider = 100;
     private float _maxValue = 100;
