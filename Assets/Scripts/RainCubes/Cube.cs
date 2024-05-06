@@ -72,7 +72,7 @@ public class Cube : MonoBehaviour
 
     private void GeneratLifeTime()
     {
-        _lifetime = Random.Range(_minLifetime, _maxLifetime);
+        _lifetime = Random.Range(_minLifetime, _maxLifetime + 1);
     }
 
     private Color CreateColor() => UnityEngine.Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
