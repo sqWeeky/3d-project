@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Cube : MonoBehaviour
     private Color _defaultColor = Color.blue;
 
     private MeshRenderer _renderer;
-    private BoxCollider _boxCollider;
+    private BoxCollider _boxCollider;   
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class Cube : MonoBehaviour
                 _isTouch = true;
                 _renderer.material.color = CreateColor();
                 GeneratLifeTime();
-                StartCoroutine(DeadCube());
+                StartCoroutine(DieObject());
             }
         }
     }
@@ -52,7 +53,7 @@ public class Cube : MonoBehaviour
 
     private void ChangeState() => _isTouch = false;
 
-    private IEnumerator DeadCube()
+    private IEnumerator DieObject()
     {
         var waitForSeconds = new WaitForSeconds(_period);
 
@@ -63,6 +64,7 @@ public class Cube : MonoBehaviour
             if (_lifetime <= 0)
             {
                 _boxCollider.isTrigger = true;
+                Root.Instance.GeneratorBomb.Generate(transform);
                 yield break;
             }
 
@@ -72,7 +74,7 @@ public class Cube : MonoBehaviour
 
     private void GeneratLifeTime()
     {
-        _lifetime = Random.Range(_minLifetime, _maxLifetime + 1);
+        _lifetime = UnityEngine.Random.Range(_minLifetime, _maxLifetime + 1);
     }
 
     private Color CreateColor() => UnityEngine.Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
