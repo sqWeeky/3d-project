@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class Bomb : MonoBehaviour
 {
     [SerializeField] private float _explotionRadius;
@@ -9,7 +10,6 @@ public class Bomb : MonoBehaviour
     [SerializeField] private MeshRenderer _renderer;
     [SerializeField] private float _delay;
 
-    private List<Rigidbody> _cubes = new();
     private float _maxAlpha = 1f;
     private float _minAlpha = 0f;
     private float _delta = 10f;
@@ -74,20 +74,19 @@ public class Bomb : MonoBehaviour
 
     private void Explode()
     {
-        GetExplodebleObgect();
-
-        foreach (Rigidbody cube in _cubes)
-            cube.AddExplosionForce(_explotionForse, transform.position, _explotionRadius);        
+        foreach (Rigidbody obj in GetExplodebleObgect())
+            obj.AddExplosionForce(_explotionForse, transform.position, _explotionRadius);        
     }
 
-    private void GetExplodebleObgect()
+    private List<Rigidbody> GetExplodebleObgect()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, _explotionRadius);
-
-        _cubes.Clear();
+        List<Rigidbody> _obj = new();
 
         foreach (Collider hit in hits)
             if (hit.attachedRigidbody != null && (hit.gameObject.TryGetComponent(out Cube _) || hit.gameObject.TryGetComponent(out Bomb _)))
-                _cubes.Add(hit.attachedRigidbody);
+                _obj.Add(hit.attachedRigidbody);
+
+        return _obj;
     }
 }

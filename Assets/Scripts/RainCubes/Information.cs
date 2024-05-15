@@ -3,45 +3,59 @@ using UnityEngine;
 
 public class Information : MonoBehaviour
 {
-    [SerializeField] private PoolBomb _poolBombs;
-    [SerializeField] private PoolCubes _poolCubes;
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private TextMeshProUGUI _numberOfCubes;
+    [SerializeField] private TextMeshProUGUI _numberOfBombs;
 
-    private int _container;
+    private int _containerCubes = 0;
+    private int _containerBombs = 0;
 
-    private void OnEnable()
-    {
-        _poolBombs.ValueIncreased += IncreaseValue;
-        _poolBombs.ValueDecreased += DecreaseValue;
-        _poolCubes.ValueIncreased += IncreaseValue;
-        _poolCubes.ValueDecreased += DecreaseValue;
-    }
+    //private void OnEnable()
+    //{
+    //    Root.Instance.GeneratorCubes.CubeIncreased += IncreaseValueCubes;
+    //    Root.Instance.GeneratorBombs.BombIncreased += IncreaseValueBombs;
+    //}
 
-    private void OnDisable()
-    {
-        _poolBombs.ValueIncreased -= IncreaseValue;
-        _poolBombs.ValueDecreased -= DecreaseValue;
-        _poolCubes.ValueIncreased -= IncreaseValue;
-        _poolCubes.ValueDecreased -= DecreaseValue;
-    }
+    //private void OnDisable()
+    //{
+    //    Root.Instance.GeneratorCubes.CubeIncreased -= IncreaseValueCubes;
+    //    Root.Instance.GeneratorBombs.BombIncreased -= IncreaseValueBombs;
+    //}
 
     private void Update()
     {
         ShowInfo();
     }
 
-    private void IncreaseValue()
+    private void IncreaseValueCubes()
     {
-        _container++;
+        _containerCubes++;
     }
 
-    private void DecreaseValue()
+    private void IncreaseValueBombs()
     {
-        _container--;
+        _containerBombs++;
+    }
+
+    private void DecreaseValueCubes()
+    {
+        _containerCubes--;
+    }
+
+    private void DecreaseValueBombs()
+    {
+        _containerBombs--;
     }
 
     private void ShowInfo()
     {
-        _text.text = $"Активных объектов на сцене: {_container}";
+        //_numberOfCubes.text = $"Активных кубов на сцене: {_containerCubes}";
+        //_numberOfBombs.text = $"Активных бомб на сцене: {_containerBombs}";
     }
+
+    private void ShowQuantity()
+    {
+        //_number++;
+        //_text.text = $"Всего создано бомб: {_number}";
+    }
+
 }

@@ -64,7 +64,7 @@ public class Cube : MonoBehaviour
             if (_lifetime <= 0)
             {
                 _boxCollider.isTrigger = true;
-                Root.Instance.GeneratorBomb.Generate(transform);
+                Root.Instance.GeneratorBombs.Generate(transform);
                 yield break;
             }
 

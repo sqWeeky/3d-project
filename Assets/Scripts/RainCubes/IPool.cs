@@ -1,0 +1,4 @@
+interface IPool
+{
+    
+}
