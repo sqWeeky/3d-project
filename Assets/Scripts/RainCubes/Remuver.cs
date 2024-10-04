@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Remuver : IPoolable
 {
-    [SerializeField] private PoolCubes _poolCubes;
-    [SerializeField] private PoolBombs _poolBomb;
+    [SerializeField] private PoolC _poolCubes;
+    [SerializeField] private PoolB _poolBomb;
     //[SerializeField] private Cube _prefabCube;
     //[SerializeField] private Bomb _prefabBomb;
 
@@ -15,13 +15,13 @@ public class Remuver : IPoolable
     {
         if (collider.TryGetComponent(out Cube cube))
         {
-            _poolCubes.PutCube(cube);
+            _poolCubes.GetObject(cube);
             //Root.Instance._pool.PutObgect(cube as IPoolable);
             CubeDecreased?.Invoke();
         }
         else if(collider.TryGetComponent(out Bomb bomb))
         {
-            _poolBomb.PutBomb(bomb);
+            _poolBomb.GetObject(bomb);
             //Root.Instance._pool.PutObgect(bomb as IPoolable);
             BombDecreased?.Invoke();
         }

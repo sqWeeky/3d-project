@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class GeneratorBombs : MonoBehaviour
 {
-    [SerializeField] private PoolBombs _pool;
-    //[SerializeField] private IPoolable _prefab;
+    [SerializeField] private Pool<Bomb> _pool;
+    //[SerializeField] private Bomb _prefab;
 
     public event Action BombIncreased;
 
-    public void Generate(Transform transform)
+    public void Generate(Transform prefab)
     {
-        var bomb = _pool.GetBomb(transform);
-        //var bomb = (Bomb)Root.Instance._pool.GetObject(_prefab);
+        var bomb = _pool.GetObject();
+        //var bomb = (Bomb)Root.Instance._pool.GetObject(prefab);
         BombIncreased?.Invoke();
         bomb.Activate();
     }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GeneratorCubes : MonoBehaviour
 {
-    [SerializeField] private PoolCubes _pool;
+    [SerializeField] private PoolC _pool;
     [SerializeField] private float _delay;
     [SerializeField] private Ground _ground;
     [SerializeField] private Transform _generator;
-    //[SerializeField] private Cube _prefab;
+    [SerializeField] private Cube _prefab;
 
     private float _positionY;
 
@@ -41,7 +41,7 @@ public class GeneratorCubes : MonoBehaviour
         float spawnPositionZ = UnityEngine.Random.Range(_ground.PositionLowerBound.z, _ground.PositionUpperBound.z);
         Vector3 spawnPoint = new Vector3(spawnPositionX, _positionY, spawnPositionZ);
 
-        var newObject = _pool.GetObject();
+        var newObject = _pool.GetObject(_prefab);
         //var newObject = (Cube)Root.Instance._pool.GetObject(_prefab);
         CubeIncreased?.Invoke();
         newObject.gameObject.SetActive(true);

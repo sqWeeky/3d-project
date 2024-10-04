@@ -13,10 +13,12 @@ public class Cube : MonoBehaviour
     private Color _defaultColor = Color.blue;
 
     private MeshRenderer _renderer;
-    private BoxCollider _boxCollider;   
+    private BoxCollider _boxCollider;
+    private Cube _cube;
 
     private void Awake()
     {
+        _cube = GetComponent<Cube>();
         _renderer = GetComponent<MeshRenderer>();
         _boxCollider = GetComponent<BoxCollider>();
     }
@@ -64,7 +66,7 @@ public class Cube : MonoBehaviour
             if (_lifetime <= 0)
             {
                 _boxCollider.isTrigger = true;
-                Root.Instance.GeneratorBombs.Generate(transform);
+                Root.Instance.GeneratorBombs.Generate(_cube.transform);
                 yield break;
             }
 

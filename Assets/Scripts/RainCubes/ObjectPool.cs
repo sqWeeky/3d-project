@@ -1,38 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> where T : IPoolable
+namespace ObjectPool
 {
-    [SerializeField] private Transform _containerObjects;
-
-    private Dictionary<T, List<T>> _objects = new();
-
-    public T GetObject(T prefab)
+    public class ObjectPool<T> where T : IPoolable
     {
-        if (!_objects.ContainsKey(prefab))
-        {
-            _objects[prefab] = new List<T>();
-        }
+        [SerializeField] private Transform _containerObjects;
 
-        List<T> pool = _objects[prefab];
+        private Dictionary<T, List<T>> _objects = new();
 
-        foreach (T obj in pool)
+        public T GetObject(T prefab)
         {
-            if (!obj.gameObject.activeInHierarchy)
+            if (!_objects.ContainsKey(prefab))
             {
-                obj.gameObject.SetActive(true);
-                pool.Remove(obj);
-                return obj;
+                _objects[prefab] = new List<T>();
             }
+
+            List<T> pool = _objects[prefab];
+
+            foreach (T obj in pool)
+            {
+                if (!obj.gameObject.activeInHierarchy)
+                {
+                    obj.gameObject.SetActive(true);
+                    pool.Remove(obj);
+                    return obj;
+                }
+            }
+
+            T newObj = GameObject.Instantiate(prefab);
+            return newObj;
         }
 
-        T newObj = GameObject.Instantiate(prefab);
-        return newObj;
-    }
-
-    public void PutObgect(T prefab)
-    {
-        _objects[prefab].Add(prefab);
-        prefab.gameObject.SetActive(false);
+        public void PutObgect(T prefab)
+        {
+            _objects[prefab].Add(prefab);
+            prefab.gameObject.SetActive(false);
+        }
     }
 }
