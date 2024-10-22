@@ -6,7 +6,7 @@ public class Follower : MonoBehaviour
     [SerializeField] private MoveCharacter _target;
     [SerializeField] private float _speed = 20f;
     [SerializeField] private float _stepHeight = 15f;
-    [SerializeField] private Sensitive _sensitive;
+    [SerializeField] private Touching _sensitive;
 
     private Rigidbody _rigidbody;
     private Vector3 _move;
@@ -33,7 +33,7 @@ public class Follower : MonoBehaviour
 
     private void StepStairs()
     {
-        if (_sensitive.OnStairs == true)
+        if (_sensitive.IsStairs == true)
         {
             _rigidbody.AddForce(Vector3.up * _stepHeight );
         }

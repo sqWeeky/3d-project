@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class Sensitive : MonoBehaviour
+public class Touching : MonoBehaviour
 {
     private int _numberLayerMaskStairs = 7;
-    private bool _onStairs = false;
+    private bool _isStairs = false;
 
-    public bool OnStairs => _onStairs;
+    public bool IsStairs => _isStairs;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == _numberLayerMaskStairs)
         {
-            _onStairs = true;
+            _isStairs = true;
         }        
     }
 
@@ -19,7 +19,7 @@ public class Sensitive : MonoBehaviour
     {
         if (other.gameObject.layer == _numberLayerMaskStairs)
         {
-            _onStairs = false;
+            _isStairs = false;
         }
     }
 }
